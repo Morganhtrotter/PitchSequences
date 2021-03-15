@@ -70,7 +70,7 @@ export default function define(runtime, observer) {
     .attr("x", 0)
     .attr("y", 0)
     .attr("dy", "1.5em")
-    .text("of visits begin with this sequence");
+    .text("of at-bats begin with this sequence");
 
   svg
     .attr("viewBox", `${-radius} ${-radius} ${width} ${width}`)
@@ -153,8 +153,8 @@ data =>
   main.variable(observer("color")).define("color", ["d3"], function(d3){return(
 d3
   .scaleOrdinal()
-  .domain(["home", "product", "search", "account", "other", "end"])
-  .range(["#5d85cf", "#7c6561", "#da7847", "#6fb971", "#9e70cf", "#bbbbbb"])
+  .domain(["fastball", "changeup", "slider", "strikeout", "flyout", "curveball", "groundout"])
+  .range(["#f94144", "#577590", "#f8961e", "#90be6d", "#f9844a", "#43aa8b", "#277da1"])
 )});
   main.variable(observer("width")).define("width", function(){return(
 640
