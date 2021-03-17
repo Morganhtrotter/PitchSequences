@@ -35,6 +35,15 @@ window.onload = function() {
 		sequence = "";
 		$("sequenceText").innerHTML = sequence;
 	}
+
+	$("add").onclick = function() {
+		console.log("here");
+		WriteToFile(sequence);
+	}
+}
+
+function WriteToFile(sequence) {
+	// Look into localStorage
 }
 
 function $(id) {
