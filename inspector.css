@@ -84,3 +84,7 @@
 span {
 	visibility: hidden;
 }
+
+body {
+	text-align: center;
+}

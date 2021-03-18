@@ -8,7 +8,7 @@ export default function define(runtime, observer) {
 {
   const svg = d3
     .create("svg")
-    .attr("viewBox", `0 0 ${breadcrumbWidth * 10} ${breadcrumbHeight}`)
+    .attr("viewBox", `0 0 ${breadcrumbWidth * 20} ${breadcrumbHeight}`)
     .style("font", "12px sans-serif")
     .style("margin", "5px");
 
@@ -153,8 +153,8 @@ data =>
   main.variable(observer("color")).define("color", ["d3"], function(d3){return(
 d3
   .scaleOrdinal()
-  .domain(["fastball", "changeup", "slider", "strikeout", "flyout", "curveball", "groundout"])
-  .range(["#f94144", "#577590", "#f8961e", "#90be6d", "#f9844a", "#43aa8b", "#277da1"])
+  .domain(["fastball", "changeup", "slider", "strikeout", "flyout", "curveball", "groundout", "single", "double", "triple", "homer"])
+  .range(["#72BCD4", "#ADD8E6", "#D4EBF2", "#00FF00", "#008000", "#C1E1EC", "#32CD32", "#FF0000", "#C40000", "#890000", "#4E0000"])
 )});
   main.variable(observer("width")).define("width", function(){return(
 640
