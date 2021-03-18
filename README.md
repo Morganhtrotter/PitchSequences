@@ -1,5 +1,6 @@
-# Sequences Sunburst
+# Fork of Sequences Sunburst, personalized for baseball at-bat pitch sequences
 
+Original Sunburst Sequence:
 https://observablehq.com/@kerryrodden/sequences-sunburst@487
 
 View this notebook in your browser by running a web server in this folder. For
