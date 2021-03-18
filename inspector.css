@@ -4,12 +4,12 @@
 	--syntax_number:#20a5ba;
 	--syntax_keyword:#c30771;
 	--syntax_atom:#10a778;
-	--syntax_string:#008ec4;
+	--syntax_string:#000000;
 	--syntax_error:#ffbedc;
 	--syntax_unknown_variable:#838383;
 	--syntax_known_variable:#005f87;
 	--syntax_matchbracket:#20bbfc;
-	--syntax_key:#6636b4;
+	--syntax_key:#000000;
 	--mono_fonts:82%/1.5 Menlo,Consolas,monospace
 }
 
@@ -34,7 +34,7 @@
 }
 
 .observablehq--forbidden,.observablehq--pink {
-	color:#e377c2
+	color:#000000
 }
 
 .observablehq--orange {
@@ -54,7 +54,7 @@
 }
 
 .observablehq--prototype-key {
-	color:#aaa
+	color:#000000
 }
 
 .observablehq--empty {
@@ -87,4 +87,7 @@ span {
 
 body {
 	text-align: center;
+	background-image: url("./files/baseballField.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
 }

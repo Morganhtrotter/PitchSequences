@@ -53,7 +53,7 @@ export default function define(runtime, observer) {
   const label = svg
     .append("text")
     .attr("text-anchor", "middle")
-    .attr("fill", "#888")
+    .attr("fill", "#FFFFFF")
     .style("visibility", "hidden");
 
   label
@@ -157,11 +157,13 @@ d3
   .range(["#72BCD4", "#ADD8E6", "#D4EBF2", "#00FF00", "#008000", "#C1E1EC", "#32CD32", "#FF0000", "#C40000", "#890000", "#4E0000"])
 )});
   main.variable(observer("width")).define("width", function(){return(
-640
+1000
 )});
-  main.variable(observer("radius")).define("radius", ["width"], function(width){return(
-width / 2
-)});
+  main.variable(observer("radius")).define("radius", ["width"], function(width){
+    return(
+      width / 2
+    )
+  });
   main.variable(observer("arc")).define("arc", ["d3","radius"], function(d3,radius){return(
 d3
   .arc()
