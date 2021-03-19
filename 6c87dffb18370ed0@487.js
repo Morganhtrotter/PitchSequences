@@ -65,13 +65,21 @@ export default function define(runtime, observer) {
     .attr("font-size", "3em")
     .text("");
 
-  label
+  /*label
     .append("tspan")
     .attr("class", "tspanText")
     .attr("x", 0)
     .attr("y", 0)
     .attr("dy", "1.5em")
-    .text("at bats start with this sequence");
+    .text("at bats start with this sequence");*/
+
+    label
+        .append("tspan")
+        .attr("class", "tspanText")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("dy", "1.5em")
+        .text("of at-bats start with this sequence");    
 
   svg
     .attr("viewBox", `${-radius} ${-radius} ${width} ${width}`)
@@ -121,9 +129,21 @@ export default function define(runtime, observer) {
       /*path.attr("fill-opacity", node =>
         sequence.indexOf(node) >= 0 ? 1.0 : 0.3
       );*/
+      //--------------------------------------------------------------
       path.attr("class", node => 
         sequence.indexOf(node) >= 0 ? "fadeIn" : "notChild"
       );
+      label.select(".tspanText").text(node => 
+        sequence[sequence.length - 1].depth == 1 ? "of your at-bats are " 
+            + sequence[0].data.name + "'s" : "of your at-bats start with this sequence"
+      );
+      label.select(".tspanText").style("font-size", node => 
+        sequence[sequence.length - 1].depth == 1 ? "20px" : "15px"
+      );
+
+      console.log(sequence);
+      //-----------------------------------------------------------------
+
       const percentage = ((100 * d.value) / root.value).toPrecision(3);
       label
         .style("visibility", null)
@@ -157,8 +177,10 @@ data =>
   main.variable(observer("color")).define("color", ["d3"], function(d3){return(
 d3
   .scaleOrdinal()
+  //-----------------------------------------------------------------------------------------
   .domain(["fastball", "changeup", "slider", "strikeout", "flyout", "curveball", "groundout", "single", "double", "triple", "homer"])
   .range(["#72BCD4", "#ADD8E6", "#D4EBF2", "#00FF00", "#008000", "#C1E1EC", "#32CD32", "#FF0000", "#C40000", "#890000", "#4E0000"])
+  //--------------------------------------------------------------------------------------------
 )});
   main.variable(observer("width")).define("width", function(){return(
 1000

@@ -90,20 +90,28 @@ body {
 	background-image: url("./files/baseballField.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
+	margin: 0px;
 }
 
 h1 {
 	font-family: 'Nanun Gothic', sans-serif;
-	color: 
+	color: white;
+	background-color: #ADD8E6;
+	margin-top: 0px;
+	padding: 50px;
+	font-size: 50px;
 }
 
 .fadeIn {
-	transition: 0.6s;
+	transition: 0s;
 	opacity: 1;
 }
 
 .notChild {
 	opacity: 0.3;
-	transition: 0.6s;
+	transition: 0s;
 }
 
+.tspanText {
+	font-size: 20px;
+}
