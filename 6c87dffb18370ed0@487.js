@@ -67,10 +67,11 @@ export default function define(runtime, observer) {
 
   label
     .append("tspan")
+    .attr("class", "tspanText")
     .attr("x", 0)
     .attr("y", 0)
     .attr("dy", "1.5em")
-    .text("of at-bats begin with this sequence");
+    .text("at bats start with this sequence");
 
   svg
     .attr("viewBox", `${-radius} ${-radius} ${width} ${width}`)
@@ -95,7 +96,7 @@ export default function define(runtime, observer) {
     .attr("fill", "none")
     .attr("pointer-events", "all")
     .on("mouseleave", () => {
-      path.attr("fill-opacity", 1);
+      path.attr("class", "fadeIn");
       label.style("visibility", "hidden");
       // Update the value of this view
       element.value = { sequence: [], percentage: 0.0 };
@@ -117,8 +118,11 @@ export default function define(runtime, observer) {
         .reverse()
         .slice(1);
       // Highlight the ancestors
-      path.attr("fill-opacity", node =>
+      /*path.attr("fill-opacity", node =>
         sequence.indexOf(node) >= 0 ? 1.0 : 0.3
+      );*/
+      path.attr("class", node => 
+        sequence.indexOf(node) >= 0 ? "fadeIn" : "notChild"
       );
       const percentage = ((100 * d.value) / root.value).toPrecision(3);
       label
