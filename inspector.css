@@ -103,13 +103,11 @@ h1 {
 }
 
 .fadeIn {
-	transition: 0s;
 	opacity: 1;
 }
 
 .notChild {
 	opacity: 0.3;
-	transition: 0s;
 }
 
 .tspanText {

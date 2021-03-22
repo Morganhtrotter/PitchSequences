@@ -18,9 +18,18 @@ export default function define(runtime, observer) {
     .join("g")
     .attr("transform", (d, i) => `translate(${i * breadcrumbWidth}, 0)`);
 
+  //------------------------------------------------------------------------------
+  svg.append("text")
+    .attr("class", "count")
+    .attr("x", 50)
+    .attr("y", 50)
+    .attr("fill", "white")
+    .text("2-1");
+  //------------------------------------------------------------------------------
+
   g.append("polygon")
     .attr("points", breadcrumbPoints)
-    .attr("fill", d => color(d.data.name))
+    .attr("fill", d => color(d.data.name.substring(0, d.data.name.length-1)))
     .attr("stroke", "white");
 
   g.append("text")
@@ -28,8 +37,8 @@ export default function define(runtime, observer) {
     .attr("y", 15)
     .attr("dy", "0.35em")
     .attr("text-anchor", "middle")
-    .attr("fill", "white")
-    .text(d => d.data.name);
+    .attr("fill", "black")
+    .text(d => d.data.name.substring(0, d.data.name.length-1));
 
   svg
     .append("text")
@@ -49,6 +58,19 @@ export default function define(runtime, observer) {
   // Make this into a view, so that the currently hovered sequence is available to the breadcrumb
   const element = svg.node();
   element.value = { sequence: [], percentage: 0.0 };
+
+  //------------------------------------------------------------------------------
+  var balls = 0;
+  var strikes = 0;
+
+  svg.append("text")
+    .attr("class", "count")
+    .attr("x", -400)
+    .attr("y", -400)
+    .attr("fill", "white")
+    .text(balls + "-" + strikes)
+    .style("visibility", "hidden");
+  //------------------------------------------------------------------------------
 
   const label = svg
     .append("text")
@@ -96,7 +118,7 @@ export default function define(runtime, observer) {
       })
     )
     .join("path")
-    .attr("fill", d => color(d.data.name))
+    .attr("fill", d => color(d.data.name.substring(0, d.data.name.length-1)))
     .attr("d", arc);
 
   svg
@@ -109,6 +131,9 @@ export default function define(runtime, observer) {
       // Update the value of this view
       element.value = { sequence: [], percentage: 0.0 };
       element.dispatchEvent(new CustomEvent("input"));
+      //----------------------------------------------------------------
+      d3.selectAll(".count").style("visibility", "hidden");
+      //-----------------------------------------------------------------
     })
     .selectAll("path")
     .data(
@@ -130,12 +155,26 @@ export default function define(runtime, observer) {
         sequence.indexOf(node) >= 0 ? 1.0 : 0.3
       );*/
       //--------------------------------------------------------------
+      strikes = 0;
+      balls = 0;
+      for (var i = 1; i < sequence.length; i++) {
+        if (sequence[i].data.name.substring(sequence[i].data.name.length - 1, sequence[i].data.name.length) == "s") {
+          strikes++;
+        } else if (sequence[i].data.name.substring(sequence[i].data.name.length - 1, sequence[i].data.name.length) == "b") {
+          balls++;
+        } else if ((sequence[i].data.name.substring(sequence[i].data.name.length - 1, sequence[i].data.name.length) == "f") && (strikes <= 1)){
+          strikes++;
+        }
+      }
+      d3.selectAll(".count").text(balls + "-" + strikes).style("visibility", "visible");
+
+      console.log(balls + "-" + strikes);
       path.attr("class", node => 
         sequence.indexOf(node) >= 0 ? "fadeIn" : "notChild"
       );
       label.select(".tspanText").text(node => 
         sequence[sequence.length - 1].depth == 1 ? "of your at-bats are " 
-            + sequence[0].data.name + "'s" : "of your at-bats start with this sequence"
+            + sequence[0].data.name.substring(0, sequence[0].data.name.length-1) + "'s" : "of your at-bats start with this sequence"
       );
       label.select(".tspanText").style("font-size", node => 
         sequence[sequence.length - 1].depth == 1 ? "20px" : "15px"
@@ -153,6 +192,7 @@ export default function define(runtime, observer) {
       element.value = { sequence, percentage };
       element.dispatchEvent(new CustomEvent("input"));
     });
+
 
   return element;
 }
