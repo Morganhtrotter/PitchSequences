@@ -63,6 +63,7 @@ export default function define(runtime, observer) {
   var balls = 0;
   var strikes = 0;
 
+  // TO-DO add background to count
   svg.append("text")
     .attr("class", "count")
     .attr("x", -400)
