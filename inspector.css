@@ -113,3 +113,10 @@ h1 {
 .tspanText {
 	font-size: 20px;
 }
+
+.count {
+	font-family: 'Nanun Gothic', sans-serif;
+	font-size: 45px;
+	background-color: #ADD8E6;
+	padding: 10px;
+}

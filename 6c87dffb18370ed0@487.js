@@ -18,27 +18,27 @@ export default function define(runtime, observer) {
     .join("g")
     .attr("transform", (d, i) => `translate(${i * breadcrumbWidth}, 0)`);
 
-  //------------------------------------------------------------------------------
-  svg.append("text")
-    .attr("class", "count")
-    .attr("x", 50)
-    .attr("y", 50)
-    .attr("fill", "white")
-    .text("2-1");
-  //------------------------------------------------------------------------------
-
   g.append("polygon")
     .attr("points", breadcrumbPoints)
     .attr("fill", d => color(d.data.name.substring(0, d.data.name.length-1)))
     .attr("stroke", "white");
 
+  //---------------------------------------------------------------------------------
   g.append("text")
     .attr("x", (breadcrumbWidth + 10) / 2)
     .attr("y", 15)
     .attr("dy", "0.35em")
     .attr("text-anchor", "middle")
     .attr("fill", "black")
-    .text(d => d.data.name.substring(0, d.data.name.length-1));
+    .text(d => 
+        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "s" ? d.data.name.substring(0, d.data.name.length - 1) + " (strike)" :
+        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "b" ? d.data.name.substring(0, d.data.name.length - 1) + " (ball)" :
+        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "f" ? d.data.name.substring(0, d.data.name.length - 1) + " (foul)" :
+        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "x" ? d.data.name.substring(0, d.data.name.length - 1) :
+        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "i" ? d.data.name.substring(0, d.data.name.length - 1) + " (in play)" : null);
+
+    //d.data.name.substring(0, d.data.name.length-1)
+  //---------------------------------------------------------------------------------
 
   svg
     .append("text")
@@ -292,10 +292,10 @@ function buildHierarchy(csv) {
 }
 )});
   main.variable(observer("breadcrumbWidth")).define("breadcrumbWidth", function(){return(
-75
+100
 )});
   main.variable(observer("breadcrumbHeight")).define("breadcrumbHeight", function(){return(
-30
+35
 )});
   main.variable(observer("breadcrumbPoints")).define("breadcrumbPoints", ["breadcrumbWidth","breadcrumbHeight"], function(breadcrumbWidth,breadcrumbHeight){return(
 function breadcrumbPoints(d, i) {
