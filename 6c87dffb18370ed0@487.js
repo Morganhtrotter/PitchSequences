@@ -1,15 +1,73 @@
 // https://observablehq.com/@kerryrodden/sequences-sunburst@487
 
-var jimmy = true;
+//-------------------------------------------------------------------------------------------------------------------------------------------
+function setSessionItem(name, value) {
+  var mySession;
+  try {
+    mySession = JSON.parse(localStorage.getItem('mySession'));
+  } catch (e) {
+    console.log(e);
+    mySession = {};
+  }
+
+  mySession[name] = value;
+
+  mySession = JSON.stringify(mySession);
+
+  localStorage.setItem('mySession', mySession);
+}
+
+function getSessionItem(name) {
+  var mySession = localStorage.getItem('mySession');
+  if (mySession) {
+    try {
+      mySession = JSON.stringify(mySession);
+      console.log(mySession[name]);
+      return mySession[name];
+    } catch (e) {
+      console.log(e);
+    }
+  }
+}
+
+function restoreSession(data) {
+    for (var x in data) {
+        //use saved data to set values as needed
+        console.log(x, data[x]);
+    }
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------------
+
 
 export default function define(runtime, observer) {
   const main = runtime.module();
   //-----------------------------------------------------------------------------------------------------------------------------------------------
 
-  $("jimmy").onclick = function() { jimmy = true; };
-  $("jonny").onclick = function() { jimmy = false; };
+  var mySession = localStorage.getItem('mySession');
+  if (mySession) {
+      try {
+          mySession = JSON.parse(localStorage.getItem('mySession'));
+      } catch (e) {
+          console.log(e);
+          mySession = {};
+      }
+      restoreSession(mySession);
+  } else {
+      localStorage.setItem('mySession', '{}');
+  }
 
-  if (jimmy) {
+  //setSessionItem('foo', Date.now()); //should change each time
+
+  /*if (!mySession.bar) {
+      setSessionItem('bar', Date.now()); //should not change on refresh
+  }*/
+
+  $("jimmy").onclick = function() { setSessionItem('foo', true) };
+  $("jonny").onclick = function() { setSessionItem('foo', false) };
+
+  console.log(getSessionItem("foo"));
+
+  if (getSessionItem('foo')) {
     const fileAttachments = new Map([["visit-sequences@1.csv",new URL("./files/jimmysData",import.meta.url)]]);
     main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   } else {
