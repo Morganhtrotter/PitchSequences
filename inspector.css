@@ -118,6 +118,7 @@ h1 {
 .count {
 	font-family: 'Nanun Gothic', sans-serif;
 	font-size: 45px;
+	border-radius: 10px;
 }
 
 .breadcrumbText {

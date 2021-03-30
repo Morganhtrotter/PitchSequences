@@ -66,7 +66,18 @@ export default function define(runtime, observer) {
   var balls = 0;
   var strikes = 0;
 
-  // TO-DO add background to count
+  // Count Background
+  svg.append("rect")
+    .attr("class", "count")
+    .attr("x", -415)
+    .attr("y", -450)
+    .attr("width", 95)
+    .attr("height", 70)
+    .attr("fill", "#79b8cd")
+    .attr("rx", "15")
+    .style("visibility", "hidden");
+
+  // Count Text
   svg.append("text")
     .attr("class", "count")
     .attr("x", -400)
@@ -74,6 +85,7 @@ export default function define(runtime, observer) {
     .attr("fill", "white")
     .text(balls + "-" + strikes)
     .style("visibility", "hidden");
+
   //------------------------------------------------------------------------------
 
   const label = svg
@@ -223,7 +235,7 @@ d3
   .scaleOrdinal()
   //-----------------------------------------------------------------------------------------
   .domain(["fastball", "changeup", "slider", "strikeout", "flyout", "curveball", "groundout", "single", "double", "triple", "homer"])
-  .range(["#4fcef7", "#64c3e2", "#79b8cd", "#a0e8a0", "#81e081", "#8eaeb8", "#61d961", "#ffb0b0", "#ff8989", "#ff6262", "#ff3b3b"])
+  .range(["#79b8cd", "#64c3e2", "#4fcef7", "#a0e8a0", "#81e081", "#8eaeb8", "#61d961", "#ffb0b0", "#ff8989", "#ff6262", "#ff3b3b"])
   //--------------------------------------------------------------------------------------------
 )});
   main.variable(observer("width")).define("width", function(){return(
