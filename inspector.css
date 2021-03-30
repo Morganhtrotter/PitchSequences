@@ -122,6 +122,22 @@ h1 {
 }
 
 .breadcrumbText {
-	font-size: 14pt;
+	font-size: 15pt;
 	font-weight: bold;
+	font-family: 'Nanun Gothic', sans-serif;
+}
+
+button {
+	color: #4fcef7;
+	background: none;
+	border-color: #4fcef7;
+	border-width: 2px;
+	border-radius: 5px;
+	border-style: solid;
+	padding: 10px;
+}
+
+button:hover {
+	background-color: #4fcef7;
+	color: #473333;
 }

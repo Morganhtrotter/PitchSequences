@@ -1,8 +1,23 @@
 // https://observablehq.com/@kerryrodden/sequences-sunburst@487
+
+var jimmy = true;
+
 export default function define(runtime, observer) {
   const main = runtime.module();
-  const fileAttachments = new Map([["visit-sequences@1.csv",new URL("./files/4b8bc441afab87356f7b5cc5aef3130f4ca634aaae3a46ba7c0f7950b152bc9cdd9bbddae444d694f3e3b4d43587419a17eb0bd5fbd340ce6d6c7b31907bfc7b",import.meta.url)]]);
-  main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
+  //-----------------------------------------------------------------------------------------------------------------------------------------------
+
+  $("jimmy").onclick = function() { jimmy = true; };
+  $("jonny").onclick = function() { jimmy = false; };
+
+  if (jimmy) {
+    const fileAttachments = new Map([["visit-sequences@1.csv",new URL("./files/jimmysData",import.meta.url)]]);
+    main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
+  } else {
+    const fileAttachments = new Map([["visit-sequences@1.csv",new URL("./files/4b8bc441afab87356f7b5cc5aef3130f4ca634aaae3a46ba7c0f7950b152bc9cdd9bbddae444d694f3e3b4d43587419a17eb0bd5fbd340ce6d6c7b31907bfc7b",import.meta.url)]]);
+    main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
+  }
+
+  //---------------------------------------------------------------------------------------------------------------------------------------------
 
   main.variable(observer("breadcrumb")).define("breadcrumb", ["d3","breadcrumbWidth","breadcrumbHeight","sunburst","breadcrumbPoints","color"], function(d3,breadcrumbWidth,breadcrumbHeight,sunburst,breadcrumbPoints,color)
 {
@@ -184,7 +199,6 @@ export default function define(runtime, observer) {
       }
       d3.selectAll(".count").text(balls + "-" + strikes).style("visibility", "visible");
 
-      console.log(balls + "-" + strikes);
       path.attr("class", node => 
         sequence.indexOf(node) >= 0 ? "fadeIn" : "notChild"
       );
@@ -196,7 +210,6 @@ export default function define(runtime, observer) {
         sequence[sequence.length - 1].depth == 1 ? "20px" : "15px"
       );
 
-      console.log(sequence);
       //-----------------------------------------------------------------
 
       const percentage = ((100 * d.value) / root.value).toPrecision(3);
@@ -308,7 +321,7 @@ function buildHierarchy(csv) {
 }
 )});
   main.variable(observer("breadcrumbWidth")).define("breadcrumbWidth", function(){return(
-150
+160
 )});
   main.variable(observer("breadcrumbHeight")).define("breadcrumbHeight", function(){return(
 40
