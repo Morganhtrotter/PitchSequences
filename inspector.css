@@ -87,9 +87,10 @@ span {
 
 body {
 	text-align: center;
-	background-image: url("./files/baseballField.jpg");
+	/*background-image: url("./files/baseballField.jpg");
 	background-size: cover;
-	background-repeat: no-repeat;
+	background-repeat: no-repeat;*/
+	background-color: #473333;
 	margin: 0px;
 }
 
@@ -117,6 +118,9 @@ h1 {
 .count {
 	font-family: 'Nanun Gothic', sans-serif;
 	font-size: 45px;
-	background-color: #ADD8E6;
-	padding: 10px;
+}
+
+.breadcrumbText {
+	font-size: 14pt;
+	font-weight: bold;
 }

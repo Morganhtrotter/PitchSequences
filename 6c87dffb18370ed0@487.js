@@ -9,7 +9,7 @@ export default function define(runtime, observer) {
   const svg = d3
     .create("svg")
     .attr("viewBox", `0 0 ${breadcrumbWidth * 20} ${breadcrumbHeight}`)
-    .style("font", "12px sans-serif")
+    .style("font", "18px sans-serif")
     .style("margin", "5px");
 
   const g = svg
@@ -29,13 +29,14 @@ export default function define(runtime, observer) {
     .attr("y", 15)
     .attr("dy", "0.35em")
     .attr("text-anchor", "middle")
-    .attr("fill", "black")
+    .attr("fill", "white")
+    .attr("class", "breadcrumbText")
     .text(d => 
-        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "s" ? d.data.name.substring(0, d.data.name.length - 1) + " (strike)" :
-        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "b" ? d.data.name.substring(0, d.data.name.length - 1) + " (ball)" :
-        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "f" ? d.data.name.substring(0, d.data.name.length - 1) + " (foul)" :
-        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "x" ? d.data.name.substring(0, d.data.name.length - 1) :
-        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "i" ? d.data.name.substring(0, d.data.name.length - 1) + " (in play)" : null);
+        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "s" ? d.data.name.substring(0, d.data.name.length - 1).toUpperCase() + " (S)" :
+        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "b" ? d.data.name.substring(0, d.data.name.length - 1).toUpperCase() + " (B)" :
+        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "f" ? d.data.name.substring(0, d.data.name.length - 1).toUpperCase() + " (F)" :
+        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "x" ? d.data.name.substring(0, d.data.name.length - 1).toUpperCase() :
+        d.data.name.substring(d.data.name.length - 1, d.data.name.length) == "i" ? d.data.name.substring(0, d.data.name.length - 1).toUpperCase() + " (IP)" : null);
 
     //d.data.name.substring(0, d.data.name.length-1)
   //---------------------------------------------------------------------------------
@@ -46,7 +47,9 @@ export default function define(runtime, observer) {
     .attr("x", (sunburst.sequence.length + 0.5) * breadcrumbWidth)
     .attr("y", breadcrumbHeight / 2)
     .attr("dy", "0.35em")
-    .attr("text-anchor", "middle");
+    .attr("text-anchor", "middle")
+    .attr("class", "breadcrumbText")
+    .attr("fill", "white");
 
   return svg.node();
 }
@@ -220,7 +223,7 @@ d3
   .scaleOrdinal()
   //-----------------------------------------------------------------------------------------
   .domain(["fastball", "changeup", "slider", "strikeout", "flyout", "curveball", "groundout", "single", "double", "triple", "homer"])
-  .range(["#72BCD4", "#ADD8E6", "#D4EBF2", "#00FF00", "#008000", "#C1E1EC", "#32CD32", "#FF0000", "#C40000", "#890000", "#4E0000"])
+  .range(["#4fcef7", "#64c3e2", "#79b8cd", "#a0e8a0", "#81e081", "#8eaeb8", "#61d961", "#ffb0b0", "#ff8989", "#ff6262", "#ff3b3b"])
   //--------------------------------------------------------------------------------------------
 )});
   main.variable(observer("width")).define("width", function(){return(
@@ -293,10 +296,10 @@ function buildHierarchy(csv) {
 }
 )});
   main.variable(observer("breadcrumbWidth")).define("breadcrumbWidth", function(){return(
-100
+150
 )});
   main.variable(observer("breadcrumbHeight")).define("breadcrumbHeight", function(){return(
-35
+40
 )});
   main.variable(observer("breadcrumbPoints")).define("breadcrumbPoints", ["breadcrumbWidth","breadcrumbHeight"], function(breadcrumbWidth,breadcrumbHeight){return(
 function breadcrumbPoints(d, i) {
