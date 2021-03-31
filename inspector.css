@@ -95,12 +95,17 @@ body {
 }
 
 h1 {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0px;
 	font-family: 'Nanun Gothic', sans-serif;
 	color: white;
 	background-color: #ADD8E6;
 	margin-top: 0px;
+	margin-bottom: 40px;
 	padding: 50px;
 	font-size: 50px;
+	box-shadow: 0px 10px 20px #101010;
 }
 
 .fadeIn {
@@ -151,7 +156,12 @@ button:hover {
 	margin-left: auto;
 	margin-right: auto;
 	line-height: 1.5;
-	background-color: rgba(173, 216, 230, 0.6);
+	background-color: #79b8cd;
 	border-radius: 10px;
 	margin-bottom: 30px;
+}
+
+#sequenceText {
+	padding-top: 30px;
+	padding-bottom: 30px;
 }

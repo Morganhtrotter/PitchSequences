@@ -81,6 +81,7 @@ export default function define(runtime, observer) {
 {
   const svg = d3
     .create("svg")
+    .attr("id", "sequenceText")
     .attr("viewBox", `0 0 ${breadcrumbWidth * 20} ${breadcrumbHeight}`)
     .style("font", "18px sans-serif")
     .style("margin", "5px");
