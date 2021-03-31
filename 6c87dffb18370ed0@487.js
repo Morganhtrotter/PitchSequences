@@ -62,12 +62,12 @@ export default function define(runtime, observer) {
       setSessionItem('bar', Date.now()); //should not change on refresh
   }*/
 
-  $("jimmy").onclick = function() { setSessionItem('foo', true) };
-  $("jonny").onclick = function() { setSessionItem('foo', false) };
+  $("jimmy").onclick = function() { setSessionItem('foo', true); location.reload(); };
+  $("jonny").onclick = function() { setSessionItem('foo', false); location.reload(); };
 
-  console.log(getSessionItem("foo"));
+  console.log(mySession["foo"]);
 
-  if (getSessionItem('foo')) {
+  if (mySession["foo"]) {
     const fileAttachments = new Map([["visit-sequences@1.csv",new URL("./files/jimmysData",import.meta.url)]]);
     main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   } else {
