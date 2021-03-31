@@ -141,3 +141,17 @@ button:hover {
 	background-color: #4fcef7;
 	color: #473333;
 }
+
+#text {
+	font-family: 'Nanun Gothic', sans-serif;
+	color: white;
+	text-align: left;
+	width: 800px;
+	padding: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 1.5;
+	background-color: rgba(173, 216, 230, 0.6);
+	border-radius: 10px;
+	margin-bottom: 30px;
+}
