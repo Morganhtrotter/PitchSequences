@@ -95,8 +95,8 @@ body {
 }
 
 h1 {
-	position: -webkit-sticky;
-	position: sticky;
+	/*position: -webkit-sticky;
+	position: sticky;*/
 	top: 0px;
 	font-family: 'Nanun Gothic', sans-serif;
 	color: white;
