@@ -87,10 +87,10 @@ span {
 
 body {
 	text-align: center;
-	/*background-image: url("./files/baseballField.jpg");
+	background-image: url("./files/sequencesBG.jpg");
 	background-size: cover;
-	background-repeat: no-repeat;*/
-	background-color: #473333;
+	background-repeat: no-repeat;
+	background-position: center;
 	margin: 0px;
 }
 
