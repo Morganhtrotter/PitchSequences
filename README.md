@@ -4,6 +4,7 @@ Original Sunburst Sequence:
 https://observablehq.com/@kerryrodden/sequences-sunburst@487
 
 //-----------------------------------------------------------------------------//
+
 Front-End Technologies used: JavaScript, HTML5, CSS3, D3.js
 
 Back-end Technologies used: Node.js, GithubPages
